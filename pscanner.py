@@ -24,11 +24,12 @@ print("""
                                     
 """)
 
-# Asking for the client to scan
+# Asks the client what it should scan
 print("Enter scan address format:\n\n")
 print("(a) Enter URL to resolve \n(b) Enter IP to use\n\n")
 userAddressChoice = str(input("> "))
 
+# gets information from the client
 if userAddressChoice.lower() == 'a':
     useraddress = str(input("Enter address: "))
     remote_ip = socket.gethostbyname(useraddress)
@@ -37,6 +38,7 @@ elif userAddressChoice.lower() == 'b':
 else:
     sys.exit("incorrect option entered")
 
+# lets the client know what they entered
 print("\nRemote IP: " + remote_ip)
 
 # Print banner
@@ -56,14 +58,17 @@ try:
             print("Port {}:     Open".format(port))
         sock.close()
 
+# tells the computer what to do if the client pushes CTRL+C
 except KeyboardInterrupt:
     print("You pressed CTRL+C. Exiting...")
     sys.exit()
 
+# tells the computer what to do if it can't turn the url into a ip address
 except socket.gaierror:
     print("Hostname couldn't be resolved. Exiting...")
     sys.exit()
 
+# tells the computer what to do if it can't connect to the ip address
 except socket.error:
     print("Couldn't connect. Exiting...")
     sys.exit()
