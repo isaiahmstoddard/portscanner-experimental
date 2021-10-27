@@ -1,3 +1,9 @@
+##############################
+#       Isaiah Stoddard      #
+#  Experimental Portscanner  #
+#         10-27-2020         #
+##############################
+
 import socket
 import subprocess
 import sys
@@ -29,7 +35,7 @@ print("Enter scan address format:\n\n")
 print("(a) Enter URL to resolve \n(b) Enter IP to use\n\n")
 userAddressChoice = str(input("> "))
 
-# gets information from the client
+# Gets information from the client
 if userAddressChoice.lower() == 'a':
     useraddress = str(input("Enter address: "))
     remote_ip = socket.gethostbyname(useraddress)
@@ -42,14 +48,14 @@ else:
 print("\nRemote IP: " + remote_ip)
 
 # Print banner
-print('\n'+'-'*60)
+print('\n' + '-' * 60)
 print("Please wait, scanning remote host", remote_ip + "...")
-print('-'*60)
+print('-' * 60)
 
 # Get start time
 t1 = datetime.now()
 
-# using range to specify ports to scan
+# Uses range to specify ports to scan
 try:
     for port in range(1,1025):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -58,25 +64,25 @@ try:
             print("Port {}:     Open".format(port))
         sock.close()
 
-# tells the computer what to do if the client pushes CTRL+C
+# Tells the computer what to do if the client pushes CTRL+C
 except KeyboardInterrupt:
     print("You pressed CTRL+C. Exiting...")
     sys.exit()
 
-# tells the computer what to do if it can't turn the url into a ip address
+# Tells the computer what to do if it can't turn the url into a ip address
 except socket.gaierror:
     print("Hostname couldn't be resolved. Exiting...")
     sys.exit()
 
-# tells the computer what to do if it can't connect to the ip address
+# Tells the computer what to do if it can't connect to the ip address
 except socket.error:
     print("Couldn't connect. Exiting...")
     sys.exit()
 
-# get end time
+# Get end time
 t2 = datetime.now()
 
-# get final time amount
-finalTime = t2-t1
+# Get final time amount
+finalTime = t2 - t1
 
-print("Scanning completed in: ", finalTime)
+print("Scanning completed in: ", + finalTime)
